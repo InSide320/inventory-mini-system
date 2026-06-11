@@ -3,7 +3,7 @@
     "target": "ES2020",
     "module": "commonjs",
     "esModuleInterop": true,
-    "rootDir": "src",
+    "rootDir": "backend",
     "outDir": "dist",
     "strict": true
   }
