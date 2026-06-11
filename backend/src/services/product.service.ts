@@ -7,7 +7,7 @@ export const getProducts = () => {
     return productRepository.find();
 };
 export const getProductById = (id: number) => {
-    return productRepository.findOneBy({id});
+    return productRepository.findOneBy({id}); // select * from products where id = (number)
 };
 
 export const createProduct = async (product: Partial<Product>) => {

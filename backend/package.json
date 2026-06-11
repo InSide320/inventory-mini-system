@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/bin/www.ts",
   "scripts": {
-    "dev": "tsx watch src/bin/www.ts",
+    "dev": "nodemon -L --watch src --ext ts,json --exec tsx src/bin/www.ts",
     "build": "tsc",
     "start": "node dist/bin/www.js",
     "seed": "tsx src/seeds/seed-products.ts",
@@ -26,6 +26,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^25.9.3",
+    "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
     "tsx": "^4.22.4",
     "typeorm-ts-node-commonjs": "^0.3.20",

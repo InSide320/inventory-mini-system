@@ -1,24 +1,16 @@
 import app from '../app';
-import {AppDataSource} from "../data-source";
-import productRoutes from "../routes/product.routes";
+import connectDB from "../db/connectDB";
 
 const PORT = process.env.PORT || 4000;
 
-
-AppDataSource.initialize()
-    .then(() => {
-        console.log("Data Source has been initialized!")
-
-        app.use((req, res, next) => {
-            console.log(`${req.method} ${req.url}`);
-            next();
-        })
-
-        // use routes
-        app.use('/products', productRoutes);
-
-        app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-    }).catch(err => {
-    console.error("Error during Data Source initialization", err)
-});
+(async () => {
+    try {
+        await connectDB();
+        app.listen(PORT, () => {
+            console.log(`Server started http://localhost:${PORT}`);
+        });
+    } catch (error) {
+        console.error("Error during server startup", error);
+        process.exit(1);
+    }
+})();
