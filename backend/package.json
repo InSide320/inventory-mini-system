@@ -2,11 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.ts",
+  "main": "src/bin/www.ts",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch src/bin/www.ts",
     "build": "tsc",
-    "start": "node src/server.ts"
+    "start": "node src/bin/www.js"
   },
   "private": true,
   "dependencies": {
@@ -16,6 +16,8 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
     "@types/node": "^25.9.3",
     "prisma": "^7.8.0",
     "tsx": "^4.22.4",
