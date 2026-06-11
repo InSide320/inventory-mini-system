@@ -1,15 +1,8 @@
 {
-  "name": "inventory-mini-system",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
+  "name": "backend",
+  "private": true,
   "scripts": {
-    "build": "tsc",
-    "start": "node ./src/index.ts"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "typescript": "^5.5.3"
-  },
-  "private": true
+    "dev": "docker-compose up --build",
+    "down": "docker-compose down"
+  }
 }
