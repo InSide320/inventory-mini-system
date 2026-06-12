@@ -27,3 +27,8 @@ lerna-debug.log*
 .vscode/*
 /.idea/
 /package-lock.json
+/frontend/node_modules/
+/backend/package-lock.json
+/frontend/package-lock.json
+/backend/.gitignore
+/backend/src/migrations/1781254500314-Init.ts
