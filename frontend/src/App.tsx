@@ -21,7 +21,8 @@ function App() {
       const data = await getProducts();
       setProducts(data);
     } catch (err) {
-      setError("Failed to load products: " + err);
+      const error = err as AxiosError<{ message: string }>;
+      setError(error.response?.data?.message || error.message || "Failed to load products");
     } finally {
       setLoading(false);
     }
@@ -39,7 +40,8 @@ function App() {
       await deleteProduct(id);
       await loadProducts();
     } catch (err) {
-      setError("Failed to delete product" + err);
+      const error = err as AxiosError<{ message: string }>;
+      setError(error.response?.data?.message || error.message || "Failed to delete product");
     } finally {
       setLoading(false);
     }
