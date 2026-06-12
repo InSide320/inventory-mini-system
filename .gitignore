@@ -31,4 +31,4 @@ lerna-debug.log*
 /backend/package-lock.json
 /frontend/package-lock.json
 /backend/.gitignore
-/backend/src/migrations/1781254500314-Init.ts
+/backend/src/migrations
