@@ -2,17 +2,32 @@ import { AppDataSource } from "../data-source";
 import { Product } from "../entities/Product";
 import { CreateProductDto } from "../dto/CreateProductDto";
 import { getProductStatus } from "../utils/getProductStatus";
+import { BadRequestError, NotFoundError } from "../errors";
 
 const productRepository = AppDataSource.getRepository(Product);
 
-export const getProducts = () => {
-  return productRepository.find();
+export const getProducts = async () => {
+  return await productRepository.find();
 };
-export const getProductById = (id: number) => {
-  return productRepository.findOneBy({ id }); // select * from products where id = (number)
+export const getProductById = async (id: number) => {
+  const entity = await productRepository.findOneBy({ id });
+  if (!entity) {
+    throw new NotFoundError("Product not found");
+  }
+  return entity;
 };
 
 export const createProduct = async (dto: CreateProductDto) => {
+  if (!dto.name.trim()) {
+    throw new BadRequestError("Product name is required");
+  }
+  if (dto.quantity < 0) {
+    throw new BadRequestError("Quantity cannot be negative");
+  }
+  if (Number(dto.price) < 0) {
+    throw new BadRequestError("Price cannot be negative");
+  }
+
   const newProduct = productRepository.create({
     name: dto.name,
     quantity: dto.quantity,
@@ -26,7 +41,11 @@ export const updateProduct = async (id: number, dto: CreateProductDto) => {
   const product = await productRepository.findOneBy({ id });
 
   if (!product) {
-    throw new Error("Product not found");
+    throw new NotFoundError("Product not found");
+  }
+
+  if (!dto.name.trim()) {
+    throw new BadRequestError("Product name is required");
   }
 
   product.name = dto.name;
@@ -40,5 +59,11 @@ export const updateProduct = async (id: number, dto: CreateProductDto) => {
 };
 
 export const deleteProduct = async (id: number) => {
+  const product = await productRepository.findOneBy({ id });
+
+  if (!product) {
+    throw new NotFoundError("Product not found");
+  }
+
   return productRepository.delete(id);
 };
