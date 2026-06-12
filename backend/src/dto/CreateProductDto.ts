@@ -1,8 +1,8 @@
-import {ProductStatus} from "../enum/ProductStatus";
+import { ProductStatus } from "../enum/ProductStatus";
 
 export type CreateProductDto = {
-    name: string;
-    quantity: number;
-    price: string;
-    status?: ProductStatus;
+  name: string;
+  quantity: number;
+  price: string;
+  status?: ProductStatus;
 };
