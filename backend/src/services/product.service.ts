@@ -44,8 +44,12 @@ export const updateProduct = async (id: number, dto: CreateProductDto) => {
     throw new NotFoundError("Product not found");
   }
 
-  if (!dto.name.trim()) {
+  if (dto.name !== undefined && !dto.name.trim()) {
     throw new BadRequestError("Product name is required");
+  }
+
+  if (dto.quantity !== undefined && dto.quantity < 0) {
+    throw new BadRequestError("Quantity cannot be negative");
   }
 
   product.name = dto.name;
