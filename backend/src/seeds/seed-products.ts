@@ -7,19 +7,19 @@ const products = [
         name: "Laptop Lenovo ThinkPad",
         quantity: 10,
         price: "1200.00",
-        status: ProductStatus.ACTIVE,
+        status: ProductStatus.OUT_OF_STOCK,
     },
     {
         name: "Mouse Logitech M185",
         quantity: 35,
         price: "18.50",
-        status: ProductStatus.ACTIVE,
+        status: ProductStatus.IN_STOCK,
     },
     {
         name: "Keyboard HyperX Alloy",
-        quantity: 15,
+        quantity: 5,
         price: "75.99",
-        status: ProductStatus.INACTIVE,
+        status: ProductStatus.LOW_STOCK,
     },
 ];
 

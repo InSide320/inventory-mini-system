@@ -6,3 +6,9 @@ export interface Product {
     status: string;
     createdAt: string;
 }
+
+export interface CreateProductDto {
+    name: string;
+    quantity: number;
+    price: string;
+}

@@ -1,13 +1,13 @@
 import ProductList from "./components/ProductList";
 import {useEffect, useState} from "react";
-import {Product} from "./types/product";
-import {getProducts} from "./api/products.api";
+import {CreateProductDto, Product} from "./types/product";
+import {createProduct, deleteProduct, getProducts, updateProduct} from "./api/products.api";
 import ProductDetails from "./components/ProductDetails";
+import ProductForm from "./components/ProductForm";
 
 function App() {
     const [products, setProducts] = useState<Product[]>([]);
-    // const [editProduct, setEditProduct] = useState<Product | null>(null);
-    // const [deleteProductId, setDeleteProductId] = useState<Product | null>(null);
+    const [editingProduct, setEditingProduct] = useState<Product | null>(null);
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
     const loadProducts = async () => {
@@ -19,15 +19,29 @@ function App() {
         loadProducts();
     }, []);
 
+    const handleDelete = async (id: number) => {
+        await deleteProduct(id);
+        await loadProducts();
+    }
+
+    const handleEditOrUpdate = async (product: CreateProductDto) => {
+        if (editingProduct) {
+            await updateProduct(editingProduct.id, product);
+        } else {
+            await createProduct(product);
+        }
+        await loadProducts();
+    }
+
 
     return (
         <>
+            <ProductForm onSubmit={handleEditOrUpdate} onClose={() => setEditingProduct(null)}
+                         editingProduct={editingProduct}/>
             <ProductList
                 products={products}
-                onEdit={() => {
-                }}
-                onDelete={() => {
-                }}
+                onEdit={setEditingProduct}
+                onDelete={handleDelete}
                 onView={setSelectedProduct}
             />
             <ProductDetails product={selectedProduct} onClose={() => setSelectedProduct(null)}/>

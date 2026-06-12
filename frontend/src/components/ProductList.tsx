@@ -3,7 +3,7 @@ import ProductItem from "./ProductItem";
 
 interface Props {
     products: Product[];
-    onEdit: (id: number) => void;
+    onEdit: (product: Product) => void;
     onDelete: (id: number) => void;
     onView: (product: Product) => void;
 }

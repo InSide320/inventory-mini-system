@@ -18,7 +18,7 @@ export class Product extends BaseEntity {
     @Column({
         type: "enum",
         enum: ProductStatus,
-        default: ProductStatus.ACTIVE,
+        default: ProductStatus.OUT_OF_STOCK,
     })
     status!: ProductStatus
 
