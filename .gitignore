@@ -28,7 +28,10 @@ lerna-debug.log*
 /.idea/
 /package-lock.json
 /frontend/node_modules/
-/backend/package-lock.json
+/backend-express/package-lock.json
+/backend-nest/package-lock.json
 /frontend/package-lock.json
-/backend/.gitignore
-/backend/src/migrations
+/backend-express/.gitignore
+/backend-nest/.gitignore
+/backend-express/src/migrations
+/backend-nest/src/migrations
