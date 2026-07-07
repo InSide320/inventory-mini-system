@@ -111,7 +111,7 @@ npm run dev
 
 ### Services:
 
-- backend → http://localhost:4000
+- backend-express → http://localhost:4000
 - frontend → http://localhost:3000
 - database → localhost:5432
 
@@ -119,12 +119,12 @@ npm run dev
 
 ### Run migrations:
 ```bash
-docker compose exec backend npm run migration:generate
+docker compose exec backend-express npm run migration:generate
 ```
 ```bash
-docker compose exec backend npm run migration:run
+docker compose exec backend-express npm run migration:run
 ```
 ```bash
-docker compose exec backend npm run seed
+docker compose exec backend-express npm run seed
 ```
 ---
