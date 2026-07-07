@@ -27,7 +27,7 @@ The project demonstrates basic full-stack development skills: REST API, database
 
 ## 📦 Features
 
-### Product Management
+### ProductEntity Management
 - View product list
 - Create product
 - Edit product
@@ -35,7 +35,7 @@ The project demonstrates basic full-stack development skills: REST API, database
 - Update product quantity
 - View product status based on quantity
 
-### Product Status Logic
+### ProductEntity Status Logic
 - 0 → out_of_stock
 - 1–5 → low_stock
 - 6+ → in_stock

@@ -4,6 +4,8 @@
   "scripts": {
     "dev": "docker-compose up --build",
     "down": "docker-compose down",
+    "backend:dev": "npm --prefix backend-express run dev",
+    "nest:dev": "npm --prefix backend-nest run start:dev",
     "lint": "eslint .",
     "format": "prettier . --write",
     "format:check": "prettier . --check"
