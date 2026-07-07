@@ -1,10 +1,11 @@
-import { Module } from "@nestjs/common";
+import { MiddlewareConsumer, Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ProductEntity } from "./product/entities/product.entity";
 import { ProductModule } from "./product/product.module";
+import { LoggerMiddleware } from "./logger.middleware";
 
 @Module({
   imports: [
@@ -23,4 +24,8 @@ import { ProductModule } from "./product/product.module";
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes("*");
+  }
+}
