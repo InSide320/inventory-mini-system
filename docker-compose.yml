@@ -20,6 +20,13 @@ services:
     depends_on:
       - postgres
 
+  backend-nest:
+    build: ./backend-nest
+    ports:
+      - "4001:4001"
+    environment:
+      PORT: 4001
+
   frontend:
     build: ./frontend
     environment:
