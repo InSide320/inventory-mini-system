@@ -5,6 +5,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { UpdateProductDto } from "./dto/update.product.dto";
+import { productUtils } from "./utils/product.utils";
 
 @Injectable()
 export class ProductService {
@@ -36,7 +37,10 @@ export class ProductService {
       throw new BadRequestError("Price cannot be negative");
     }
 
-    const product = this.productRepository.create(dto);
+    const product = this.productRepository.create({
+      ...dto,
+      status: productUtils(dto.quantity),
+    });
     return this.productRepository.save(product);
   }
 
@@ -51,8 +55,16 @@ export class ProductService {
       throw new BadRequestError("Quantity cannot be negative");
     }
 
-    this.productRepository.merge(product, dto);
-    return this.productRepository.save(product);
+    const nextQuantity = dto.quantity ?? product.quantity;
+
+    this.productRepository.merge(product, {
+      ...dto,
+      status: productUtils(nextQuantity),
+    });
+
+    const updatedProduct = await this.productRepository.save(product);
+
+    return { message: "Product Updated", product: updatedProduct };
   }
 
   async remove(id: number) {
